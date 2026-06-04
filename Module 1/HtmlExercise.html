@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+
+    <!-- CSS Task 5: Google Font via link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS Task 1: External stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- CSS Task 1: Embedded <style> for body background (internal) -->
+    <style>
+        /* CSS Task 1: Embedded style — body background */
+        body {
+            background-color: #f5f0e8;
+        }
+
+        /* CSS Task 3: ID selector */
+        #mainHeader {
+            background: linear-gradient(135deg, #1a3c5e, #2d5a8e);
+        }
+
+        /* CSS Task 8: Box model demo — add outline to a specific section */
+        #addEventSection {
+            border: 2px dashed #1a3c5e;
+            padding: 1.5rem;
+        }
+    </style>
+
+    <!-- jQuery CDN (Task 14 JS) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <!-- ==================== Navigation ==================== -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="#bulletin">Bulletin</a></li>
+            <li><a href="#video">Video</a></li>
+            <li><a href="#preferences">Preferences</a></li>
+            <li><a href="#location">Location</a></li>
+            <!-- HTML Task 2: external link with target="_blank" -->
+            <li><a href="help.html" target="_blank">Help</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==================== Header ==================== -->
+    <header id="mainHeader">
+        <!-- CSS Task 1: inline style on heading (red) -->
+        <h1 style="color: white;">Local Community Event Portal</h1>
+        <p class="site-description">Connecting Communities · Celebrating Together</p>
+    </header>
+
+    <!-- ==================== Main ==================== -->
+    <main>
+
+        <!-- HTML Task 3: Welcome Banner with id, inline style, .highlight -->
+        <div id="welcomeBanner">
+            <h2>Welcome, Resident!</h2>
+            <p>
+                Special Offer:
+                <!-- CSS Task 1: inline style on special offer span -->
+                <span style="color: #ffd700; font-weight: bold;">
+                    Free Event Registration This Week!
+                </span>
+            </p>
+        </div>
+
+        <!-- ==================== Home Section ==================== -->
+        <!-- HTML Task 2: matching section id -->
+        <section id="home">
+            <!-- CSS Task 3: .highlight class -->
+            <h2 class="highlight">Home</h2>
+            <p>Welcome to the Local Community Event Portal. Stay informed about local events, register, and connect with your community.</p>
+        </section>
+
+        <!-- ==================== Events Section ==================== -->
+        <!-- HTML Task 8: Dynamic events via JS (Task 7 DOM + Task 9 Async) -->
+        <section id="events">
+            <h2 class="highlight">Upcoming Events</h2>
+
+            <!-- Task 8 JS: onchange filter + keydown search -->
+            <div class="filter-bar">
+                <input type="text"
+                       id="searchInput"
+                       placeholder="Search events by name...">
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Music">Music</option>
+                    <option value="Food">Food</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Eco">Eco</option>
+                    <option value="Culture">Culture</option>
+                </select>
+            </div>
+
+            <!-- Loading spinner (Task 9) -->
+            <div id="loadingSpinner">⏳ Loading events...</div>
+
+            <!-- JS Task 7: event cards inserted here dynamically -->
+            <div id="eventContainer"></div>
+        </section>
+
+        <!-- ==================== Add Event (Task 6 Arrays) ==================== -->
+        <section id="addEventSection">
+            <h2>Add New Event</h2>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+                Use this form to push a new event into the events array.
+            </p>
+            <div class="filter-bar">
+                <input type="text"  id="newEventName"     placeholder="Event Name">
+                <input type="text"  id="newEventCategory" placeholder="Category">
+                <input type="date"  id="newEventDate">
+                <input type="number" id="newEventSeats"   placeholder="Seats" min="1">
+                <input type="number" id="newEventFee"     placeholder="Fee (₹)" min="0">
+                <button class="cta-button" onclick="handleAddEvent()">Add Event</button>
+            </div>
+        </section>
+
+        <!-- ==================== Gallery (HTML Task 4) ==================== -->
+        <section id="gallery">
+            <h2>Community Event Gallery</h2>
+            <!-- HTML Task 4: Table 2 rows × 3 cols -->
+            <table class="gallery-table">
+                <tr>
+                    <td>
+                        <!-- class gallery-img styled with borders in CSS -->
+                        <img src="event1.jpg" alt="Music Festival"
+                             title="Music Festival"
+                             class="gallery-img"
+                             ondblclick="enlargeImage(this)">
+                        <p>Music Festival 2026</p>
+                    </td>
+                    <td>
+                        <img src="event2.jpg" alt="Food Fair"
+                             title="Food Fair"
+                             class="gallery-img"
+                             ondblclick="enlargeImage(this)">
+                        <p>Annual Food Fair</p>
+                    </td>
+                    <td>
+                        <img src="event3.jpg" alt="Sports Day"
+                             title="Sports Day"
+                             class="gallery-img"
+                             ondblclick="enlargeImage(this)">
+                        <p>Community Sports Day</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="event4.jpg" alt="Tree Plantation"
+                             title="Tree Plantation Drive"
+                             class="gallery-img"
+                             ondblclick="enlargeImage(this)">
+                        <p>Tree Plantation Drive</p>
+                    </td>
+                    <td>
+                        <img src="event5.jpg" alt="Book Exhibition"
+                             title="Local Book Exhibition"
+                             class="gallery-img"
+                             ondblclick="enlargeImage(this)">
+                        <p>Local Book Exhibition</p>
+                    </td>
+                    <td>
+                        <img src="event6.jpg" alt="Cultural Program"
+                             title="Cultural Night Event"
+                             class="gallery-img"
+                             ondblclick="enlargeImage(this)">
+                        <p>Cultural Night Event</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- ==================== Registration Form (HTML Task 5) ==================== -->
+        <section id="register">
+            <h2>Event Registration Form</h2>
+
+            <!-- JS Task 11: form.elements, preventDefault, inline validation -->
+            <form id="registrationForm" class="reg-form">
+
+                <div class="form-group">
+                    <label for="regName">Name:</label>
+                    <input type="text" name="regName" id="regName"
+                           placeholder="Enter your name"
+                           required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" name="regEmail" id="regEmail"
+                           placeholder="Enter your email"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regDate">Event Date:</label>
+                    <input type="date" name="regDate" id="regDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regEvent">Event Type:</label>
+                    <select name="regEvent" id="eventType" required>
+                        <option value="">Select Event</option>
+                        <option value="Music Festival">Music Festival</option>
+                        <option value="Sports Day">Sports Day</option>
+                        <option value="Food Fair">Food Fair</option>
+                        <option value="Cultural Program">Cultural Program</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="regMessage">Message:</label>
+                    <textarea name="regMessage" id="regMessage"
+                              placeholder="Enter your message"
+                              required rows="3"></textarea>
+                </div>
+
+                <!-- JS Task 14: jQuery click handler on #registerBtn -->
+                <button type="submit" id="registerBtn" class="cta-button">Register</button>
+
+                <!-- JS Task 11: API submission status -->
+                <p id="apiStatus"></p>
+
+                <!-- HTML Task 5: <output> confirmation -->
+                <output name="result" for="regName regEvent"></output>
+
+            </form>
+        </section>
+
+        <!-- ==================== Contact Section ==================== -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <p class="highlight">Contact the city council for assistance.</p>
+        </section>
+
+        <!-- ==================== Event Feedback (HTML Task 6) ==================== -->
+        <section id="feedback">
+            <h2>Event Feedback</h2>
+
+            <!-- onblur: phone validation -->
+            <div class="form-group">
+                <label>Phone Number:</label>
+                <input type="text"
+                       id="phoneInput"
+                       placeholder="10-digit phone number"
+                       onblur="validatePhone(this)">
+            </div>
+
+            <!-- onchange: show fee -->
+            <div class="form-group" style="margin-top:1rem;">
+                <label>Select Event:</label>
+                <select onchange="showFee(this.value)">
+                    <option value="">Choose Event</option>
+                    <option value="100">Music Festival</option>
+                    <option value="200">Sports Day</option>
+                    <option value="150">Food Fair</option>
+                </select>
+            </div>
+            <p id="fee"></p>
+
+            <!-- onclick: show confirmation -->
+            <button class="cta-button" onclick="showConfirmation()" style="margin-top:1rem;">
+                Submit Feedback
+            </button>
+            <p id="confirm"></p>
+
+            <!-- ondblclick: enlarge image -->
+            <div style="margin-top:1.5rem;">
+                <p style="font-size:0.85rem; color:var(--text-muted);">Double-click image to enlarge:</p>
+                <img src="event1.jpg"
+                     alt="Event Image"
+                     width="150"
+                     class="gallery-img"
+                     ondblclick="enlargeImage(this)">
+            </div>
+
+            <!-- onkeyup: character count -->
+            <div class="form-group" style="margin-top:1.5rem;">
+                <label>Feedback Text:</label>
+                <textarea onkeyup="countChars(this)"
+                          placeholder="Write your feedback..."
+                          rows="4"></textarea>
+                <p>Characters: <span id="charCount">0</span></p>
+            </div>
+        </section>
+
+        <!-- ==================== Community Bulletin (CSS Task 9 Multi-column) ==================== -->
+        <section id="bulletin">
+            <h2>Community Bulletin</h2>
+            <div class="bulletin-text">
+                <p>
+                    The city council is pleased to announce a series of exciting community events
+                    planned for the upcoming season. These events are designed to bring residents
+                    together, celebrate local culture, and promote health and wellbeing across all
+                    age groups. From music festivals and food fairs to eco-drives and sports days,
+                    there is something for everyone in our vibrant community.
+                </p>
+                <p style="margin-top:0.75rem;">
+                    Residents are encouraged to register early as seats are limited. Volunteers
+                    are also welcome to participate in the organization of these events. Please
+                    contact the city council office for more information or visit this portal
+                    regularly for the latest updates. Together, we can make our community
+                    a better place for all.
+                </p>
+            </div>
+        </section>
+
+        <!-- ==================== Video Invite (HTML Task 7) ==================== -->
+        <section id="video">
+            <h2>Event Promo Video</h2>
+
+            <video width="500" controls
+                   oncanplay="videoReady()">
+                <source src="event-promo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <p id="videoMessage"></p>
+        </section>
+
+        <!-- ==================== User Preferences (HTML Task 8) ==================== -->
+        <section id="preferences">
+            <h2>User Preferences</h2>
+            <p>Your preferred event type is saved automatically via <code>localStorage</code>.</p>
+            <button class="cta-button" onclick="clearPreferences()">
+                Clear Preferences
+            </button>
+        </section>
+
+        <!-- ==================== Geolocation (HTML Task 9) ==================== -->
+        <section id="location">
+            <h2>Find Nearby Events</h2>
+            <button class="cta-button" onclick="findLocation()">
+                📍 Find Nearby Events
+            </button>
+            <p id="locationOutput" style="margin-top:1rem;"></p>
+        </section>
+
+    </main>
+
+    <!-- ==================== Footer ==================== -->
+    <footer>
+        <p>&copy; 2026 Local Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- ==================== Scripts ==================== -->
+
+    <!-- JS Task 1: External script -->
+    <script src="main.js"></script>
+
+    <!-- Inline scripts for HTML tasks 6–9 that need direct DOM access -->
+    <script>
+        // ---- HTML Task 6: Event Feedback Handlers ----
+
+        function validatePhone(input) {
+            if (input.value.length !== 10 || isNaN(input.value)) {
+                alert("Enter a valid 10-digit phone number");
+                input.style.border = "2px solid red";
+            } else {
+                input.style.border = "2px solid green";
+            }
+        }
+
+        function showFee(fee) {
+            document.getElementById("fee").innerHTML =
+                fee ? "Event Fee: ₹" + fee : "";
+        }
+
+        function showConfirmation() {
+            document.getElementById("confirm").innerHTML =
+                "✅ Feedback submitted successfully!";
+        }
+
+        function enlargeImage(img) {
+            img.classList.toggle("enlarged");
+        }
+
+        function countChars(textarea) {
+            document.getElementById("charCount").innerHTML =
+                textarea.value.length;
+        }
+
+        // ---- HTML Task 7: Video Event ----
+        function videoReady() {
+            document.getElementById("videoMessage").innerHTML =
+                "✅ Video ready to play";
+        }
+
+        // Warn user on page leave (HTML Task 7)
+        window.onbeforeunload = function () {
+            return "You have unfinished work on this page.";
+        };
+
+        // ---- HTML Task 8: localStorage ----
+        const eventTypeSelect = document.getElementById("eventType");
+
+        eventTypeSelect.addEventListener("change", function () {
+            localStorage.setItem("preferredEvent", this.value);
+        });
+
+        window.onload = function () {
+            const saved = localStorage.getItem("preferredEvent");
+            if (saved && eventTypeSelect) {
+                eventTypeSelect.value = saved;
+            }
+        };
+
+        function clearPreferences() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert("Preferences Cleared!");
+        }
+
+        // ---- HTML Task 9: Geolocation ----
+        function findLocation() {
+            const output = document.getElementById("locationOutput");
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    showPosition,
+                    showError,
+                    { enableHighAccuracy: true, timeout: 5000 }
+                );
+            } else {
+                output.innerHTML = "Geolocation is not supported by your browser.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("locationOutput").innerHTML =
+                "📍 Latitude: " + position.coords.latitude +
+                "<br>📍 Longitude: " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            const output = document.getElementById("locationOutput");
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    output.innerHTML = "❌ Location permission denied."; break;
+                case error.TIMEOUT:
+                    output.innerHTML = "⏱ Request timed out."; break;
+                default:
+                    output.innerHTML = "⚠️ Unable to get location.";
+            }
+        }
+
+        // ---- JS Task 6: Add event helper ----
+        function handleAddEvent() {
+            const name     = document.getElementById("newEventName").value.trim();
+            const category = document.getElementById("newEventCategory").value.trim();
+            const date     = document.getElementById("newEventDate").value;
+            const seats    = parseInt(document.getElementById("newEventSeats").value) || 0;
+            const fee      = parseInt(document.getElementById("newEventFee").value) || 0;
+            if (!name || !category || !date) {
+                showToast("Please fill in name, category, and date.", true);
+                return;
+            }
+            addEvent(name, category, date, seats, fee);
+            showToast(`Event "${name}" added!`);
+        }
+
+        // ---- JS Task 14: jQuery fadeIn/fadeOut ----
+        $(document).ready(function () {
+            // Fade in event cards when they appear
+            $(document).on("click", ".register-btn:not(:disabled)", function () {
+                $(this).closest(".eventCard").fadeOut(300).fadeIn(600);
+            });
+
+            // jQuery click on #registerBtn (additional handler alongside form submit)
+            $("#registerBtn").click(function () {
+                console.log("Register button clicked (jQuery handler).");
+            });
+
+            // Benefits note in console
+            console.log("jQuery loaded. Benefit of React/Vue: component-based architecture enables reusable UI components, virtual DOM for performance, and state management at scale.");
+        });
+    </script>
+
+</body>
+</html>
