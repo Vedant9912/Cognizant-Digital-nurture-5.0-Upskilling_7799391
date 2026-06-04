@@ -1,0 +1,542 @@
+/* ============================================
+   Task 1: External Stylesheet (styles.css)
+   All reusable styles moved here from HTML
+   ============================================ */
+
+/* Task 2: CSS Syntax & Comments — formatted rules */
+
+/* Google Font Import — Task 5 */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ============================================
+   Task 3: Universal selector reset
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   CSS Custom Properties (theming)
+   ============================================ */
+:root {
+    --primary:     #1a3c5e;
+    --accent:      #e8843a;
+    --bg:          #f5f0e8;
+    --surface:     #ffffff;
+    --text:        #2a2a2a;
+    --text-muted:  #666;
+    --border:      #ddd;
+    --success:     #27ae60;
+    --danger:      #e74c3c;
+    --radius:      10px;
+    --shadow:      0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* ============================================
+   Task 4: Color & Background Styling
+   ============================================ */
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f5f0e8;           /* fallback color */
+    background-image: url('bg-pattern.png');  /* optional texture */
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* ============================================
+   Task 3: Element selector — all h2
+   ============================================ */
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/* Task 3: Grouping selector */
+h3, p {
+    color: var(--text);
+}
+
+/* ============================================
+   Task 5: Typography
+   ============================================ */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.5px;
+}
+
+.site-description {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.8;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ============================================
+   Header / Banner
+   ============================================ */
+header {
+    background: linear-gradient(135deg, var(--primary) 0%, #2d5a8e 100%);
+    color: white;
+    padding: 2rem 2rem 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    color: white;
+}
+
+/* ============================================
+   Task 6: Navigation / Link & List Styling
+   ============================================ */
+nav {
+    background-color: var(--primary);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav ul {
+    list-style-type: none;   /* remove bullets */
+    list-style-position: inside;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+nav ul li {
+    padding: 0.25rem 0;
+    margin: 0;
+}
+
+/* Task 6: Link pseudo-classes */
+nav a:link    { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+nav a:visited { color: rgba(255,255,255,0.65); }
+nav a:hover   { color: var(--accent); text-decoration: underline; }
+nav a:active  { color: #ffd700; }
+
+/* ============================================
+   Main layout
+   ============================================ */
+main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+section {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* Task 4: Linear gradient on section headers */
+section > h2 {
+    background: linear-gradient(90deg, var(--primary), #2d5a8e);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   Task 3: ID selector — welcome banner
+   ============================================ */
+#welcomeBanner {
+    background: linear-gradient(135deg, #1a3c5e 0%, #2d5a8e 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+}
+
+#welcomeBanner h2 {
+    color: white;
+    background: none;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+/* ============================================
+   Task 3: Class selector — .highlight
+   ============================================ */
+.highlight {
+    background-color: rgba(232, 132, 58, 0.15);
+    font-weight: bold;
+    border-left: 4px solid var(--accent);
+    padding-left: 0.75rem;
+}
+
+/* ============================================
+   Task 2: Style for main CTA button
+   ============================================ */
+.cta-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   Task 3: Class selector — .eventCard
+   Task 8: Box Model — border, padding, margin
+   ============================================ */
+.eventCard {
+    border: 1px solid var(--border);
+    padding: 1.2rem 1rem;
+    margin: 0.75rem 0;
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+    outline: none; /* default; :focus adds outline */
+}
+
+.eventCard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.eventCard:focus-within {
+    outline: 3px solid var(--accent);
+}
+
+.disabled-card {
+    opacity: 0.6;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.event-category {
+    background: var(--primary);
+    color: white;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.event-status { font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; }
+.status-open  { background: #d4edda; color: #155724; }
+.status-full  { background: #f8d7da; color: #721c24; }
+.status-past  { background: #e2e3e5; color: #6c757d; }
+
+.event-name  { font-size: 1.05rem; font-weight: 600; margin: 0.4rem 0 0.25rem; }
+.event-date,
+.event-seats,
+.event-fee   { font-size: 0.88rem; color: var(--text-muted); margin: 0.1rem 0; }
+
+/* ============================================
+   Register button
+   ============================================ */
+.register-btn {
+    margin-top: 0.75rem;
+    padding: 0.45rem 1.2rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.register-btn:hover:not(:disabled) {
+    background: #c96e28;
+}
+
+.register-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   Event container grid
+   ============================================ */
+#eventContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+/* ============================================
+   Search & Filter Bar
+   ============================================ */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.filter-bar input,
+.filter-bar select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    background: var(--surface);
+    outline: none;
+    flex: 1;
+    min-width: 160px;
+    transition: border-color 0.2s;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+    border-color: var(--primary);
+    outline: 2px solid rgba(26,60,94,0.2);  /* Task 8: outline on focused fields */
+}
+
+/* ============================================
+   Task 7: Table Styling
+   ============================================ */
+.gallery-table {
+    width: 100%;
+    border-collapse: collapse;          /* Task 7 */
+    text-align: center;                 /* Task 7 */
+}
+
+.gallery-table td {
+    border: 1px solid var(--border);
+    padding: 0.75rem;
+    background: var(--surface);
+}
+
+/* Task 7: Zebra striping */
+.gallery-table tr:nth-child(even) td {
+    background-color: #f0ece4;
+}
+
+.gallery-img {
+    width: 180px;
+    height: 130px;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery-img:hover {
+    transform: scale(1.04);
+}
+
+.enlarged {
+    width: 340px !important;
+    height: 240px !important;
+}
+
+/* ============================================
+   Task 8: Form Styling + Outline on focus
+   ============================================ */
+.reg-form {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    outline: 3px solid rgba(26,60,94,0.2);  /* Task 8: outline for selected fields */
+}
+
+.field-error {
+    color: var(--danger);
+    font-size: 0.82rem;
+    margin-top: 2px;
+}
+
+output {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--success);
+    font-weight: 600;
+}
+
+.api-success { color: var(--success); font-weight: 600; }
+.api-error   { color: var(--danger);  font-weight: 600; }
+
+/* ============================================
+   Loading Spinner
+   ============================================ */
+#loadingSpinner {
+    display: none;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+/* ============================================
+   Task 9: Multi-column text (bulletin)
+   ============================================ */
+.bulletin-text {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid gray;
+    text-align: justify;
+}
+
+/* ============================================
+   Task 8: visibility hidden vs display none demo
+   ============================================ */
+.hidden-visibility { visibility: hidden; }
+.hidden-display    { display: none; }
+
+/* ============================================
+   Video section
+   ============================================ */
+video {
+    max-width: 100%;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+}
+
+/* ============================================
+   Toast notification
+   ============================================ */
+#toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    z-index: 9999;
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+#toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+#toast.toast-error {
+    background: var(--danger);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+    background: var(--primary);
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   Task 10: Responsive Web Design — Media Queries
+   ============================================ */
+@media (max-width: 768px) {
+
+    /* Stack nav vertically */
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Reduce font sizes */
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.3rem; }
+
+    /* Images smaller */
+    .gallery-img {
+        width: 100px;
+        height: 75px;
+    }
+
+    /* Stack gallery table */
+    .gallery-table,
+    .gallery-table tr,
+    .gallery-table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Use % for flexible layout */
+    main {
+        padding: 0 5vw;
+    }
+
+    #eventContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .bulletin-text {
+        column-count: 1;
+    }
+
+    video {
+        width: 100%;
+    }
+}
